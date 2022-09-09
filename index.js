@@ -1,13 +1,14 @@
 const express = require("express");
-// require("dotenv").config()
+require("dotenv").config()
 const app = express();
 const port = process.env.PORT || 4004;
 const usersRoute = require("./routers/users");
-const hoursOfOperationRoute = require("./routers/hoursOfOperation.js");
+const hoursOfOperationRoute = require("./routers/hoursOfOperation");
 const menuRoute = require("./routers/menu");
+const authRouter = require('./routers/auth');
 
 app.use(express.json());
-app.use(usersRoute, hoursOfOperationRoute, menuRoute);
+app.use(usersRoute, hoursOfOperationRoute, menuRoute, authRouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to my Capstone Project server!");

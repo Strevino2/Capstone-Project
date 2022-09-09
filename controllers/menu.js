@@ -4,6 +4,7 @@ const { handleSQLError } = require("../sql/error");
 
 const getAllMenu = (req, res) => {
   console.log("inside get all menu route");
+  console.log(req)
   // SELECT ALL USERS
   let sql = "SELECT * FROM ??";
   sql = mysql.format(sql, ["menu"]);
