@@ -6,8 +6,10 @@ const usersRoute = require("./routers/users");
 const hoursOfOperationRoute = require("./routers/hoursOfOperation");
 const menuRoute = require("./routers/menu");
 const authRouter = require('./routers/auth');
+const cors = require("cors");
 
 app.use(express.json());
+app.use(cors());
 app.use(usersRoute, hoursOfOperationRoute, menuRoute, authRouter);
 
 app.get("/", (req, res) => {

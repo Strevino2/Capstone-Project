@@ -38,17 +38,10 @@ const getUserById = (req, res) => {
 
 const createUser = (req, res) => {
   // INSERT INTO USERS FIRST AND LAST
-  const { first_name, last_name, email, userName, password } = req.body;
-  let sql = "INSERT INTO ?? VALUES (null, ?, ?, ?, ?, ?)";
+  const { first_name, last_name } = req.body;
+  let sql = "INSERT INTO ?? VALUES (null, ?, ?)";
   // WHAT GOES IN THE BRACKETS
-  sql = mysql.format(sql, [
-    "users",
-    first_name,
-    last_name,
-    email,
-    userName,
-    password,
-  ]);
+  sql = mysql.format(sql, ["users", first_name, last_name]);
 
   pool.query(sql, (err, results) => {
     if (err) return handleSQLError(res, err);

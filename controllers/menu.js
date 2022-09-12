@@ -4,7 +4,7 @@ const { handleSQLError } = require("../sql/error");
 
 const getAllMenu = (req, res) => {
   console.log("inside get all menu route");
-  console.log(req)
+  // console.log(req);
   // SELECT ALL USERS
   let sql = "SELECT * FROM ??";
   sql = mysql.format(sql, ["menu"]);
@@ -38,16 +38,14 @@ const getmenuByID = (req, res) => {
 };
 
 const createMenu = (req, res) => {
-  // INSERT INTO USERS FIRST AND LAST
-  const { dining, menu_name, menu_description, menu_price } = req.body;
-  let sql = "INSERT INTO ?? VALUES (null, ?, ?, ?, ?, ?)";
-  // WHAT GOES IN THE BRACKETS
+  const { menu_type, menu_name, menu_price, menu_description } = req.body;
+  let sql = "INSERT INTO ?? VALUES (null, ?, ?, ?, ?)";
   sql = mysql.format(sql, [
     "menu",
-    dining,
+    menu_type,
     menu_name,
+    menu_price,
     menu_description,
-    menu_price
   ]);
 
   pool.query(sql, (err, results) => {
@@ -87,9 +85,9 @@ const deleteMenuByID = (req, res) => {
 };
 
 module.exports = {
-    getAllMenu,
-    getmenuByID,
-    createMenu,
-    updateMenuByID,
-    deleteMenuByID,
+  getAllMenu,
+  getmenuByID,
+  createMenu,
+  updateMenuByID,
+  deleteMenuByID,
 };

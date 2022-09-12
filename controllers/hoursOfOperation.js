@@ -38,16 +38,15 @@ const getHoursOfOperationById = (req, res) => {
 
 const createHoursOfOperation = (req, res) => {
   // INSERT INTO USERS FIRST AND LAST
-  const { first_name, last_name, email, userName, password } = req.body;
-  let sql = "INSERT INTO ?? VALUES (null, ?, ?, ?, ?, ?)";
+  const { dining_room, day, startHours, endHours } = req.body;
+  let sql = "INSERT INTO ?? VALUES (null, ?, ?, ?, ?)";
   // WHAT GOES IN THE BRACKETS
   sql = mysql.format(sql, [
     "hoursOfOperation",
-    first_name,
-    last_name,
-    email,
-    userName,
-    password,
+    dining_room,
+    day,
+    startHours,
+    endHours,
   ]);
 
   pool.query(sql, (err, results) => {
