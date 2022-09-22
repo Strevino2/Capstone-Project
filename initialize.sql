@@ -10,10 +10,10 @@ CREATE TABLE users (
 CREATE TABLE menu (
   id INT NOT NULL AUTO_INCREMENT,
   -- user_id INT NOT NULL,
-  menu_type VARCHAR(50),
-  menu_name VARCHAR(50),
-  menu_price VARCHAR(50),
-  menu_description VARCHAR(50),
+  menu_type VARCHAR(99),
+  menu_name VARCHAR(99),
+  menu_price VARCHAR(99),
+  menu_description VARCHAR(200),
   PRIMARY KEY (id)
   -- FOREIGN KEY (user_id)
 --   REFERENCES users (id)
@@ -71,7 +71,7 @@ VALUES
   ("From the Grill","World's Best Chicken Fried Steak! (Nearly 3 Dozen Sold)", "$11.99", "Hand-Battered, and smothered in our Country Gravy"),
   ("From the Grill","World's Best Chicken Fried Steak! (Nearly 3 Dozen Sold)", "$13.99", "Hand-Battered, and smothered in our Country Gravy"),
   ("From the Grill","World's Best Chicken Fried Steak! (Nearly 3 Dozen Sold)", "$15.99", "Hand-Battered, and smothered in our Country Gravy"),
-  ("From the Grill","Grilled or Chicken fried pork chops", "$14.29", "Two of our AWARD WINING (Texas Monthly) T-Bone style pork chops, hand-battered and fried to perfection.  Country gravy served on the side."),
+  ("From the Grill","Grilled or Chicken fried pork chops", "$14.29", "Two of our AWARD WINNING (Texas Monthly) T-Bone style pork chops, hand-battered and fried to perfection.  Country gravy served on the side."),
   ("From the Grill","Country Fried Chicken", "$14.29", "Chicken Breast, Hand-Battered and fried until golden brown.  Country Gravy on the side."),
   ("From the Grill","Hamburger Steak", "$12.89", "8oz Hamburger Steak smothered with Sauteed Onions and Brown Gravy"),
   ("From the Grill","World's best chicken fried steak!", "$14.99", "Hand-Battered, and smothered in our country gravy."),
