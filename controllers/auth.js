@@ -56,7 +56,7 @@ const login = (req, res) => {
       data.password = "REDACTED";
 
       const token = jwt.sign(data, "LexLuthor");
-      res.json({
+      res.send({
         msg: "Login successful",
         token,
       });
