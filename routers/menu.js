@@ -9,6 +9,7 @@ router.get("/menu/:id", menuController.getmenuByID);
 // router.post('/menu', authenticateToken, menuController.createMenu)
 router.post("/menu", menuController.createMenu);
 router.put("/menu/:id", menuController.updateMenuByID);
-router.delete("/menu/:id", authenticateToken, menuController.deleteMenuByID);
+// router.delete("/menu/:id", authenticateToken, menuController.deleteMenuByID);
+router.delete("/menu/:id", menuController.deleteMenuByID);
 
 module.exports = router;
