@@ -46,11 +46,11 @@ const login = (req, res) => {
 
   pool.query(sql, (err, rows) => {
     if (err) return handleSQLError(res, err);
-    if (!rows.length) return res.status(404).send("No matching users");
+    if (!rows.length) return res.status(404).send({msg: "Wrong Username"});
 
     const hash = rows[0].password;
     bcrypt.compare(password, hash).then((result) => {
-      if (!result) return res.status(400).send("Invalid password");
+      if (!result) return res.status(400).send({msg: "Wrong password"});
 
       const data = { ...rows[0] };
       data.password = "REDACTED";
