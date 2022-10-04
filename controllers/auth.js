@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 const pool = require("../sql/connection");
 const { handleSQLError } = require("../sql/error");
 
+require("dotenv").config();
+
 // for bcrypt
 const saltRounds = 10;
 
@@ -29,11 +31,11 @@ function authenticateToken(req, res, next) {
   const authHeader = req.headers.authorization;
   const token = authHeader && authHeader.split(" ")[1];
   if (!token) return res.sendStatus(401);
-  jwt.verify(token, "LexLuthor", (err, decoded) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) return res.sendStatus(401);
     console.log(decoded);
-    req.id = decoded.id
-    req.username = decoded.username
+    req.id = decoded.id;
+    req.username = decoded.username;
     next();
   });
 }
@@ -46,16 +48,16 @@ const login = (req, res) => {
 
   pool.query(sql, (err, rows) => {
     if (err) return handleSQLError(res, err);
-    if (!rows.length) return res.status(404).send({msg: "Wrong Username"});
+    if (!rows.length) return res.status(404).send({ msg: "Wrong Username" });
 
     const hash = rows[0].password;
     bcrypt.compare(password, hash).then((result) => {
-      if (!result) return res.status(400).send({msg: "Wrong password"});
+      if (!result) return res.status(400).send({ msg: "Wrong password" });
 
       const data = { ...rows[0] };
       data.password = "REDACTED";
 
-      const token = jwt.sign(data, "LexLuthor");
+      const token = jwt.sign(data, process.env.JWT_SECRET);
       res.json({
         msg: "Login successful",
         token: token,
